@@ -1,11 +1,10 @@
 import React from "react";
+import Testimonials from "./Testimonials";
 
 const Testimonials_DTPS = () => {
     return (
-        <div>
-            <h1 className="text-5xl font-semibold text-center mt-24">
-                Reviews
-            </h1>
+        <div className="mt-24">
+            <Testimonials />
         </div>
     );
 };

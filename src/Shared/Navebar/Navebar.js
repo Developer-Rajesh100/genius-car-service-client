@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navebar = () => {
     const Item = (
         <>
             <li>
-                <a>Home</a>
+                <Link to="/">Home</Link>
             </li>
 
             <li>
@@ -18,6 +19,9 @@ const Navebar = () => {
             </li>
             <li>
                 <a>Contact us</a>
+            </li>
+            <li>
+                <Link to="/login">Login</Link>
             </li>
         </>
     );
