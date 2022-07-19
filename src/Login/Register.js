@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import google_img from "../Images/Social/google.png";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../FirebaseInit";
 
 const Register = () => {
     const {
@@ -10,6 +13,8 @@ const Register = () => {
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => console.log(data);
+    // Google Login
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     return (
         <div className="h-screen">
             <div className="flex justify-center mt-16">
@@ -82,6 +87,16 @@ const Register = () => {
                             type="submit"
                             value="Register"
                         />
+                        <div class="divider">OR</div>
+                        <button
+                            onClick={() => signInWithGoogle()}
+                            className="flex justify-center items-center bg-indigo-200 hover:bg-indigo-300 py-1 rounded-lg"
+                        >
+                            <img className="mr-2" src={google_img} alt="" />
+                            <p className=" font-semibold text-lg">
+                                Continue With Google
+                            </p>
+                        </button>
                         <p className="mt-3">
                             Already have an Account?{" "}
                             <Link className=" text-green-600" to="/login">
