@@ -2,8 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import google_img from "../Images/Social/google.png";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+    useSignInWithEmailAndPassword,
+    useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../FirebaseInit";
+import Spinner from "../Shared/Spinner";
+import { async } from "@firebase/util";
 
 const Login = () => {
     const {
@@ -12,9 +17,30 @@ const Login = () => {
         watch,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+
     // Google Signin
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user1, loading1, error1] =
+        useSignInWithGoogle(auth);
+    // Sign In With Email & Password
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
+    const onSubmit = (data) => {
+        signInWithEmailAndPassword(data.email, data.password);
+        console.log(data);
+    };
+    // Error
+    let signinError;
+    if (error1 || error) {
+        signinError = (
+            <p className="text-red-500 text-center mt-2">
+                <small> Error: {error?.message || error1?.message}</small>
+            </p>
+        );
+    }
+    // Spinner
+    if (loading) {
+        <Spinner />;
+    }
     return (
         <div className="h-screen">
             <div className="flex justify-center mt-36">
@@ -53,14 +79,16 @@ const Login = () => {
                         <div class="divider">OR</div>
                         <button
                             onClick={() => signInWithGoogle()}
-                            className="flex justify-center items-center bg-indigo-200 hover:bg-indigo-300 py-1 rounded-lg"
+                            className="flex justify-center items-center bg-indigo-200 hover:bg-indigo-300 py-1 rounded-lg px-3"
                         >
                             <img className="mr-2" src={google_img} alt="" />
                             <p className=" font-semibold text-lg">
                                 Continue With Google
                             </p>
                         </button>
-                        <p className="mt-3">
+                        {/* <p></p> */}
+                        {signinError}
+                        <p className="mt-2">
                             New to Genius Car?{" "}
                             <Link className=" text-green-600" to="/register">
                                 Create Account

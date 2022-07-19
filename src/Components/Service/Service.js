@@ -4,7 +4,9 @@ const Service = (props) => {
     const { service, title, content } = props;
     return (
         <section className=" mt-24">
-            <h1 className=" text-5xl font-semibold text-center">Services</h1>
+            <h1 className=" text-5xl font-semibold text-center mb-20">
+                Services
+            </h1>
             <div class="hero">
                 <div class="hero-content flex-col lg:flex-row-reverse">
                     <img src={service} class="max-w-sm rounded-lg shadow-2xl" />

@@ -1,7 +1,22 @@
+import { signOut } from "firebase/auth";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../FirebaseInit";
+import Spinner from "../Spinner";
 
 const Navebar = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+    };
+    if (loading) {
+        <Spinner />;
+    }
+    const navigate = useNavigate();
+    if (user) {
+        navigate("/");
+    }
     const Item = (
         <>
             <li>
@@ -20,9 +35,15 @@ const Navebar = () => {
             <li>
                 <a>Contact us</a>
             </li>
-            <li>
-                <Link to="/login">Login</Link>
-            </li>
+            {user ? (
+                <li>
+                    <button onClick={logout}>Logout</button>
+                </li>
+            ) : (
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+            )}
         </>
     );
     return (
@@ -52,7 +73,9 @@ const Navebar = () => {
                         {Item}{" "}
                     </ul>
                 </div>
-                <a class="btn btn-ghost normal-case text-xl">Genius Car</a>
+                <Link to="/" class="btn btn-ghost normal-case text-xl">
+                    Genius Car
+                </Link>
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal p-0">{Item}</ul>

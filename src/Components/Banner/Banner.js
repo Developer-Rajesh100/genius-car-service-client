@@ -24,13 +24,13 @@ const Banner = (props) => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src={img1} />
+                    <img className="w-full" src={img1} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={img2} />
+                    <img className="w-full" src={img2} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={img3} />
+                    <img className="w-full" src={img3} />
                 </SwiperSlide>
             </Swiper>
         </>
