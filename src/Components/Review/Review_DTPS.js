@@ -9,7 +9,7 @@ const Review_DTPS = () => {
             .then((data) => setRivews(data));
     }, []);
     return (
-        <div className=" bg-base-200">
+        <div id="review" className=" bg-base-200">
             <h1 className="text-5xl font-semibold text-center pt-20 mt-24">
                 Review
             </h1>

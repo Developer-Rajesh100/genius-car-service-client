@@ -12,6 +12,7 @@ import { sendEmailVerification } from "firebase/auth";
 import Spinner from "../Shared/Spinner";
 
 const Register = () => {
+    // const [user, loading, error] = useAuthState(auth);
     const {
         register,
         handleSubmit,
@@ -30,6 +31,7 @@ const Register = () => {
         <Spinner />;
     }
     const onSubmit = async (data) => {
+        console.log(data);
         await createUserWithEmailAndPassword(
             // data.first_name,
             // data.last_name,
@@ -39,12 +41,29 @@ const Register = () => {
             data.password
             // data.conform_password
         );
+
+        // User API (POST)
+        fetch("http://localhost:5000/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+            });
+
         verifyEmail();
         console.log(data);
     };
     const verifyEmail = () => {
         sendEmailVerification(auth.currentUser).then(() => {});
     };
+    if (user || user1) {
+        console.log(user || user1);
+    }
     // Error
     let signupError;
     if (error1 || error) {

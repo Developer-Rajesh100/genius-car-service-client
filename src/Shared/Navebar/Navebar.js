@@ -24,16 +24,19 @@ const Navebar = () => {
             </li>
 
             <li>
-                <a>About Us</a>
+                <a href="/#about">About Us</a>
             </li>
             <li>
-                <a>Services</a>
+                <a href="/#service">Services</a>
             </li>
             <li>
-                <a>Testimonials</a>
+                <a href="/#review">Testimonials</a>
             </li>
             <li>
                 <a>Contact us</a>
+            </li>
+            <li>
+                <Link to="/users">Users</Link>
             </li>
             <li>
                 <Link to="/admin">Admin Panel</Link>

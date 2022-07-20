@@ -9,7 +9,7 @@ const About_DTPS = () => {
             .then((data) => setabout(data));
     }, []);
     return (
-        <div className=" bg-base-200 mt-20 pt-16">
+        <div id="about" className=" bg-base-200 mt-20 pt-16">
             {about.map((content) => (
                 <About key={content._id} about={content} />
             ))}

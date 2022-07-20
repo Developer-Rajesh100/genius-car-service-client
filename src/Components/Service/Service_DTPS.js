@@ -10,7 +10,7 @@ const Service_DTPS = () => {
             .then((data) => setServices(data));
     }, []);
     return (
-        <div>
+        <div id="service">
             {services.map((service) => (
                 <Service key={service._id} service={service} />
             ))}
