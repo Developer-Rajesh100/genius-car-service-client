@@ -1,25 +1,22 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import auth from "../../FirebaseInit";
-import Review from "../Review/Review";
 
-const Testimonials = () => {
-    const [user] = useAuthState(auth);
-    // console.log(user);
+const Banner = ({ image }) => {
+    const { img1, img2, img3, _id } = image;
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm();
-    const navigate = useNavigate();
     const onSubmit = (data) => {
         console.log(data);
 
-        fetch("http://localhost:5000/review", {
-            method: "POST",
+        // Banner PUT API
+        const url = `http://localhost:5000/banner/${_id}`;
+        console.log(url);
+        fetch(url, {
+            method: "PUT", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",
             },
@@ -32,6 +29,9 @@ const Testimonials = () => {
     };
     return (
         <div className="bg-base-200  pb-20">
+            <h1 className="text-5xl font-semibold text-center mb-10 pt-10">
+                Banner Image
+            </h1>
             <div className="flex justify-center">
                 <form
                     className="flex flex-col w-1/2"
@@ -39,30 +39,25 @@ const Testimonials = () => {
                 >
                     <input
                         type="text"
-                        value={user?.displayName}
-                        placeholder="Name"
-                        {...register("displayName", { required: true })}
+                        defaultValue={img1}
+                        placeholder="First Slide URL"
+                        {...register("img1")}
                         className="mb-3 px-3 py-1 rounded-md"
-                        // disabled
                     />
-
                     <input
-                        type="email"
-                        value={user?.email}
-                        placeholder="Email"
-                        {...register("email", { required: true })}
+                        type="text"
+                        defaultValue={img2}
+                        placeholder="Second Slide URL"
+                        {...register("img2")}
                         className="mb-3 px-3 py-1 rounded-md"
-                        // disabled
                     />
-                    <textarea
-                        name="content"
-                        {...register("content", { required: true })}
-                        id=""
-                        cols="30"
-                        rows="7"
-                        className="mb-3 px-3 py-3 rounded-md"
-                        placeholder="Write Your content...."
-                    ></textarea>
+                    <input
+                        type="text"
+                        defaultValue={img3}
+                        placeholder="Third Slide URL"
+                        {...register("img3")}
+                        className="mb-3 px-3 py-1 rounded-md"
+                    />
 
                     {errors.exampleRequired && (
                         <span>This field is required</span>
@@ -71,8 +66,7 @@ const Testimonials = () => {
                     <input
                         className="btn btn-primary btn-sm"
                         type="submit"
-                        value="Submit"
-                        disabled={!user}
+                        value="Update"
                     />
                 </form>
             </div>
@@ -80,4 +74,4 @@ const Testimonials = () => {
     );
 };
 
-export default Testimonials;
+export default Banner;

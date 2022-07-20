@@ -1,25 +1,22 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import auth from "../../FirebaseInit";
-import Review from "../Review/Review";
 
-const Testimonials = () => {
-    const [user] = useAuthState(auth);
-    // console.log(user);
+const Service = ({ service }) => {
+    const { image, title, content, _id } = service;
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm();
-    const navigate = useNavigate();
     const onSubmit = (data) => {
         console.log(data);
 
-        fetch("http://localhost:5000/review", {
-            method: "POST",
+        // Service PUT API
+        const url = `http://localhost:5000/service/${_id}`;
+        console.log(url);
+        fetch(url, {
+            method: "PUT", // or 'PUT'
             headers: {
                 "Content-Type": "application/json",
             },
@@ -32,6 +29,9 @@ const Testimonials = () => {
     };
     return (
         <div className="bg-base-200  pb-20">
+            <h1 className="text-5xl font-semibold text-center mb-10 pt-10">
+                Services
+            </h1>
             <div className="flex justify-center">
                 <form
                     className="flex flex-col w-1/2"
@@ -39,23 +39,22 @@ const Testimonials = () => {
                 >
                     <input
                         type="text"
-                        value={user?.displayName}
-                        placeholder="Name"
-                        {...register("displayName", { required: true })}
+                        defaultValue={image}
+                        placeholder="Image URl"
+                        {...register("image")}
                         className="mb-3 px-3 py-1 rounded-md"
-                        // disabled
                     />
 
                     <input
-                        type="email"
-                        value={user?.email}
-                        placeholder="Email"
-                        {...register("email", { required: true })}
+                        type="text"
+                        defaultValue={title}
+                        placeholder="Title"
+                        {...register("title", { required: true })}
                         className="mb-3 px-3 py-1 rounded-md"
-                        // disabled
                     />
                     <textarea
                         name="content"
+                        defaultValue={content}
                         {...register("content", { required: true })}
                         id=""
                         cols="30"
@@ -71,8 +70,7 @@ const Testimonials = () => {
                     <input
                         className="btn btn-primary btn-sm"
                         type="submit"
-                        value="Submit"
-                        disabled={!user}
+                        value="Update"
                     />
                 </form>
             </div>
@@ -80,4 +78,4 @@ const Testimonials = () => {
     );
 };
 
-export default Testimonials;
+export default Service;

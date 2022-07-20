@@ -3,7 +3,7 @@ import Testimonials from "./Testimonials";
 
 const Testimonials_DTPS = () => {
     return (
-        <div className="mt-24">
+        <div className="">
             <Testimonials />
         </div>
     );

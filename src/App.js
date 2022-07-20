@@ -5,6 +5,7 @@ import Home from "./Home/Home";
 import Footer from "./Shared/Navebar/Footer/Footer";
 import Login from "./Login/Login";
 import Register from "./Login/Register";
+import Admin_DTPS from "./Admin/Admin_DTPS";
 
 function App() {
     // const img1 = img1
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/" element={<Home></Home>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/admin" element={<Admin_DTPS />} />
             </Routes>
             <Footer />
         </div>

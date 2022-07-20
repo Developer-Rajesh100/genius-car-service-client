@@ -35,6 +35,9 @@ const Navebar = () => {
             <li>
                 <a>Contact us</a>
             </li>
+            <li>
+                <Link to="/admin">Admin Panel</Link>
+            </li>
             {user ? (
                 <li>
                     <button onClick={logout}>Logout</button>
