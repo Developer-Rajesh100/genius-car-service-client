@@ -5,8 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const Banner = (props) => {
-    const { img1, img2, img3 } = props;
+const Banner = ({ image }) => {
+    const { img1, img2, img3 } = image;
     return (
         <>
             <Swiper

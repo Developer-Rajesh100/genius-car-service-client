@@ -1,7 +1,11 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import auth from "../../FirebaseInit";
 
 const Testimonials = () => {
+    const [user] = useAuthState(auth);
+    console.log(user);
     const {
         register,
         handleSubmit,
@@ -21,16 +25,20 @@ const Testimonials = () => {
                 >
                     <input
                         type="text"
+                        value={user?.displayName}
                         placeholder="Name"
                         {...register("name")}
                         className="mb-3 px-3 py-1 rounded-md"
+                        disabled
                     />
 
                     <input
                         type="email"
+                        value={user?.email}
                         placeholder="Email"
                         {...register("email", { required: true })}
                         className="mb-3 px-3 py-1 rounded-md"
+                        disabled
                     />
                     <textarea
                         name="review"
