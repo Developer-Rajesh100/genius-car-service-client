@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import google_img from "../Images/Social/google.png";
 import {
     useCreateUserWithEmailAndPassword,
@@ -36,15 +36,7 @@ const Register = () => {
     }
     const onSubmit = async (data) => {
         console.log(data);
-        await createUserWithEmailAndPassword(
-            // data.first_name,
-            // data.last_name,
-            data.email,
-            // data.phone_number,
-            // data.address,
-            data.password
-            // data.conform_password
-        );
+        await createUserWithEmailAndPassword(data.email, data.password);
 
         // User API (POST)
         fetch("http://localhost:5000/user", {
@@ -67,6 +59,10 @@ const Register = () => {
     };
     if (user || user1) {
         console.log(user || user1);
+    }
+    const navigate = useNavigate();
+    if (user || user1) {
+        navigate("/");
     }
     // Error
     let signupError;
@@ -132,14 +128,14 @@ const Register = () => {
                             className="input input-bordered w-full max-w-xs mb-3"
                         />
                         {/* Conform Password  */}
-                        <input
+                        {/* <input
                             type="password"
                             placeholder="Conform Password"
                             {...register("conform_password", {
                                 required: true,
                             })}
                             className="input input-bordered w-full max-w-xs mb-3"
-                        />
+                        /> */}
 
                         {errors.exampleRequired && (
                             <span>This field is required</span>

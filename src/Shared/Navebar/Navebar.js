@@ -15,9 +15,9 @@ const Navebar = () => {
         <Spinner />;
     }
     const navigate = useNavigate();
-    if (user) {
-        navigate("/");
-    }
+    // if (user) {
+    //     navigate("/");
+    // }
     const Item = (
         <>
             <li>
@@ -36,17 +36,13 @@ const Navebar = () => {
             <li>
                 <a>Contact us</a>
             </li>
-            {user && (
-                <>
-                    <li>
-                        <Link to="/users">Users</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin">Admin Panel</Link>
-                    </li>
-                </>
-            )}
-            {/* {user.email === "example@example.com" && (
+            {/* <li>
+                <Link to="/users">Users</Link>
+            </li>
+            <li>
+                <Link to="/admin">Admin Panel</Link>
+            </li> */}
+            {/* {user && (
                 <>
                     <li>
                         <Link to="/users">Users</Link>
@@ -56,6 +52,16 @@ const Navebar = () => {
                     </li>
                 </>
             )} */}
+            {user?.email === "example@example.com" && (
+                <>
+                    <li>
+                        <Link to="/users">Users</Link>
+                    </li>
+                    <li>
+                        <Link to="/admin">Admin Panel</Link>
+                    </li>
+                </>
+            )}
 
             {user ? (
                 <li>

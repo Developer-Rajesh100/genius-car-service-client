@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import google_img from "../Images/Social/google.png";
 import {
     useSignInWithEmailAndPassword,
@@ -28,6 +28,10 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password);
         console.log(data);
     };
+    const navigate = useNavigate();
+    if (user || user1) {
+        navigate("/");
+    }
     // Error
     let signinError;
     if (error1 || error) {
