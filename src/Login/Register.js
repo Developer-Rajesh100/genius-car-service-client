@@ -10,6 +10,7 @@ import auth from "../FirebaseInit";
 import { async } from "@firebase/util";
 import { sendEmailVerification } from "firebase/auth";
 import Spinner from "../Shared/Spinner";
+import useToken from "../Hooks/useToken";
 
 const Register = () => {
     // const [user, loading, error] = useAuthState(auth);
@@ -27,6 +28,9 @@ const Register = () => {
     // Sign in With Email&password
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth);
+
+    // const [token] = useToken(user || user1);
+
     if (loading || loading1) {
         <Spinner />;
     }
