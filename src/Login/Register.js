@@ -10,10 +10,8 @@ import auth from "../FirebaseInit";
 import { async } from "@firebase/util";
 import { sendEmailVerification } from "firebase/auth";
 import Spinner from "../Shared/Spinner";
-import useToken from "../Hooks/useToken";
 
 const Register = () => {
-    // const [user, loading, error] = useAuthState(auth);
     const {
         register,
         handleSubmit,
@@ -29,8 +27,6 @@ const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth);
 
-    // const [token] = useToken(user || user1);
-
     if (loading || loading1) {
         <Spinner />;
     }
@@ -39,7 +35,7 @@ const Register = () => {
         await createUserWithEmailAndPassword(data.email, data.password);
 
         // User API (POST)
-        fetch("http://localhost:5000/user", {
+        fetch("https://powerful-sands-08936.herokuapp.com/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -52,14 +48,11 @@ const Register = () => {
             });
 
         verifyEmail();
-        console.log(data);
     };
     const verifyEmail = () => {
         sendEmailVerification(auth.currentUser).then(() => {});
     };
-    if (user || user1) {
-        console.log(user || user1);
-    }
+
     const navigate = useNavigate();
     if (user || user1) {
         navigate("/");
@@ -127,15 +120,6 @@ const Register = () => {
                             {...register("password", { required: true })}
                             className="input input-bordered w-full max-w-xs mb-3"
                         />
-                        {/* Conform Password  */}
-                        {/* <input
-                            type="password"
-                            placeholder="Conform Password"
-                            {...register("conform_password", {
-                                required: true,
-                            })}
-                            className="input input-bordered w-full max-w-xs mb-3"
-                        /> */}
 
                         {errors.exampleRequired && (
                             <span>This field is required</span>

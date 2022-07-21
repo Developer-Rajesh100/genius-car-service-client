@@ -3,11 +3,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import auth from "../../FirebaseInit";
-import Review from "../Review/Review";
 
 const Testimonials = () => {
     const [user] = useAuthState(auth);
-    // console.log(user);
     const {
         register,
         handleSubmit,
@@ -18,7 +16,7 @@ const Testimonials = () => {
     const onSubmit = (data) => {
         console.log(data);
 
-        fetch("http://localhost:5000/review", {
+        fetch("https://powerful-sands-08936.herokuapp.com/review", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

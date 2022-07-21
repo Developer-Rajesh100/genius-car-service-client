@@ -7,7 +7,6 @@ import Spinner from "../Spinner";
 
 const Navebar = () => {
     const [user, loading, error] = useAuthState(auth);
-    console.log(user);
     const logout = () => {
         signOut(auth);
     };
@@ -36,22 +35,7 @@ const Navebar = () => {
             <li>
                 <a>Contact us</a>
             </li>
-            {/* <li>
-                <Link to="/users">Users</Link>
-            </li>
-            <li>
-                <Link to="/admin">Admin Panel</Link>
-            </li> */}
-            {/* {user && (
-                <>
-                    <li>
-                        <Link to="/users">Users</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin">Admin Panel</Link>
-                    </li>
-                </>
-            )} */}
+
             {user?.email === "example@example.com" && (
                 <>
                     <li>

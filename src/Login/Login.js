@@ -8,7 +8,6 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../FirebaseInit";
 import Spinner from "../Shared/Spinner";
-import { async } from "@firebase/util";
 
 const Login = () => {
     const {

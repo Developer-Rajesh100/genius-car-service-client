@@ -4,7 +4,7 @@ import User from "./User";
 const User_DTPS = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/user")
+        fetch("https://powerful-sands-08936.herokuapp.com/user")
             .then((res) => res.json())
             .then((data) => setUsers(data));
     }, []);

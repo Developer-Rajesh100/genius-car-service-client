@@ -4,7 +4,7 @@ import Banner from "./Banner";
 const Banner_DTPS = () => {
     const [images, setImages] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/banner")
+        fetch("https://powerful-sands-08936.herokuapp.com/banner")
             .then((res) => res.json())
             .then((data) => setImages(data));
     }, []);

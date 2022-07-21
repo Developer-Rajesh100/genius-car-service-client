@@ -7,7 +7,7 @@ const Admin_DTPS = () => {
     // Banner Data
     const [images, setImages] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/banner")
+        fetch("https://powerful-sands-08936.herokuapp.com/banner")
             .then((res) => res.json())
             .then((data) => setImages(data));
     }, []);
@@ -15,7 +15,7 @@ const Admin_DTPS = () => {
     // About Data
     const [about, setabout] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/about")
+        fetch("https://powerful-sands-08936.herokuapp.com/about")
             .then((res) => res.json())
             .then((data) => setabout(data));
     }, []);
@@ -23,7 +23,7 @@ const Admin_DTPS = () => {
     // Services Data
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/service")
+        fetch("https://powerful-sands-08936.herokuapp.com/service")
             .then((res) => res.json())
             .then((data) => setServices(data));
     }, []);

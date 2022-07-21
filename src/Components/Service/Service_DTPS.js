@@ -5,7 +5,7 @@ import Service_img from "../../Images/services/6.jpg";
 const Service_DTPS = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/service")
+        fetch("https://powerful-sands-08936.herokuapp.com/service")
             .then((res) => res.json())
             .then((data) => setServices(data));
     }, []);

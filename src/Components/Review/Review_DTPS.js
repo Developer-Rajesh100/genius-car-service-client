@@ -4,7 +4,7 @@ import Review from "./Review";
 const Review_DTPS = () => {
     const [reviews, setRivews] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/review")
+        fetch("https://powerful-sands-08936.herokuapp.com/review")
             .then((res) => res.json())
             .then((data) => setRivews(data));
     }, []);

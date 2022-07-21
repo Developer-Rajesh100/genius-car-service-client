@@ -1,7 +1,10 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import auth from "../FirebaseInit";
 
 const Banner = ({ image }) => {
+    const [user] = useAuthState(auth);
     const { img1, img2, img3, _id } = image;
     const {
         register,
@@ -13,8 +16,7 @@ const Banner = ({ image }) => {
         console.log(data);
 
         // Banner PUT API
-        const url = `http://localhost:5000/banner/${_id}`;
-        console.log(url);
+        const url = `https://powerful-sands-08936.herokuapp.com/banner/${_id}`;
         fetch(url, {
             method: "PUT", // or 'PUT'
             headers: {
@@ -67,6 +69,7 @@ const Banner = ({ image }) => {
                         className="btn btn-primary btn-sm"
                         type="submit"
                         value="Update"
+                        disabled={!user.email === "example@example.com"}
                     />
                 </form>
             </div>

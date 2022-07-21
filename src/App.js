@@ -7,6 +7,7 @@ import Login from "./Login/Login";
 import Register from "./Login/Register";
 import Admin_DTPS from "./Admin/Admin_DTPS";
 import User_DTPS from "./User/User_DTPS";
+import NotFound from "./Shared/Navebar/NotFound";
 
 function App() {
     // const img1 = img1
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/admin" element={<Admin_DTPS />} />
                 <Route path="/users" element={<User_DTPS />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
         </div>

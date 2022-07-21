@@ -4,7 +4,7 @@ import About from "./About";
 const About_DTPS = () => {
     const [about, setabout] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/about")
+        fetch("https://powerful-sands-08936.herokuapp.com/about")
             .then((res) => res.json())
             .then((data) => setabout(data));
     }, []);
